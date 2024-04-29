@@ -22,7 +22,10 @@ REPLACE_WITH_TECH_STACK_POINTS
 git clone https://github.com/GPT-Engineer-App/contact-info-form-api.git
 cd contact-info-form-api
 npm i
+cp .env.example .env
 ```
+
+Edit .env and paste in your API key to the backend you are using.
 
 ```sh
 npm run dev

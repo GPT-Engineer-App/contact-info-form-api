@@ -2,6 +2,10 @@
 // Use chakra-ui
 import { Box, Input, FormControl, FormLabel, Button, VStack, useToast } from '@chakra-ui/react';
 import { FaPlus } from "react-icons/fa"; // example - use react-icons/fa for icons
+import process from 'process';
+
+const apiKey = import.meta.env.VITE_X_API_KEY;
+
 
 const Index = () => {
   const toast = useToast();
@@ -16,12 +20,16 @@ const Index = () => {
     };
 
     try {
-      const response = await fetch('https://api.example.com/contact', {
+      /*
+      curl -X POST https://$ENV_API_URL/rest/user --json '[{name: "User 1", country: "Canada"}, {name: "User 2", country: "United States"}]'
+      */
+      const response = await fetch('https://us-west-2.aws.neurelo.com/rest/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-api-key': apiKey
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify([data]),
       });
 
       if (!response.ok) throw new Error('Network response was not ok.');
